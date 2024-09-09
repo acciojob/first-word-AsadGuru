@@ -7,12 +7,32 @@
 
 <body>
 	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+    
 
 	<h1>Find the First Word</h1>
 	<button onclick="findFirstWord()">Find First Word</button>
 	<div class="result" id="result"></div>
+	<script>
+	// cypress/e2e/findFirstWord.spec.js
+describe('First Word Finder', () => {
+  it('should display the first word from a prompt input', () => {
+    // Visit the page where your application is running
+    cy.visit('http://localhost:8080'); // Update with your live server URL
+
+    // Stub the window prompt method to return a predefined value
+    cy.window().then((win) => {
+      cy.stub(win, 'prompt').onFirstCall().returns(' Hello World!');
+    });
+
+    // Click the button that triggers the prompt and function
+    cy.get('button').click();
+
+    // Assert that the result displayed on the page is correct
+    cy.get('#result').should('contain.text', 'First word: "Hello"');
+  });
+});
+
+	</script>
 </body>
 
 </html>

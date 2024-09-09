@@ -10,6 +10,8 @@ function firstWord(s) {
 
             // Otherwise, return the substring up to the first space
             return s.substring(0, spaceIndex);
+	cy.window().then((win) => {
+      cy.stub(win, 'prompt').onFirstCall().returns(' Hello World!');
 }
 
 // Do not change the code below
